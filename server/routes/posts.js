@@ -5,9 +5,7 @@ import { getPosts, createPost,updatePost,deletePost,likePost } from '../controll
 // Create an Express router instance to handle routes for this module
 const router = express.Router();
 
-router.get('/',(req,res)=>{{
-    res.send('Hello to Memories Project API')
-}})
+
 // Define HTTP GET route to fetch posts
 router.get('/', getPosts);
 
