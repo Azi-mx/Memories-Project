@@ -6,6 +6,7 @@ import { applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
+import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import reducers from './reducers';
@@ -18,10 +19,12 @@ const theme = createTheme({
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
+  <BrowserRouter>
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
-  </Provider>,
+  </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
