@@ -8,16 +8,16 @@
   import Auth from './components/Auth/Auth';
 
   // Define the main App component
-  const App = () => (
-    <BrowserRouter>
-      <Container maxWidth="lg">
+    const App = () => (
+      <BrowserRouter>
+        <Container maxWidth="lg">
         <Navbar />
-        <Routes>
-          <Route path='/' exact element={<Home />} />
-          <Route path='/auth' exact element={<Auth />} />
-        </Routes>
-      </Container>
-    </BrowserRouter>
-  )
+          <Routes>
+            <Route path='/' exact element={<Home />} />
+            <Route path='/auth' exact element={<Auth />} />
+          </Routes>
+        </Container>
+      </BrowserRouter>
+    )
 
   export default App; // Export the App component

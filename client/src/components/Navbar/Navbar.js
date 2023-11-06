@@ -1,5 +1,6 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, Avatar, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Avatar } from '@mui/material';
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { useStyles } from '../../styles'
 import memories from '../../images/memories.png'
@@ -21,7 +22,8 @@ function Navbar() {
                         <Button variant='contained' className={classes.logout} color='secondary'>Logout</Button>
                     </div>
                 ) : (
-                    <Button variant='outlined' component={Link} to='/auth' color='erorr'>Sign In</Button>
+                    <Button variant='contained' component={Link} to='/auth' color='error'>Sign In</Button>
+
                 )}
             </Toolbar>
             {/* Display a heading in the AppBar */}

@@ -14,7 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete'; // Importing the delete ico
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'; // Importing the "more options" icon
 import moment from 'moment'; // Importing the Moment.js library to format timestamps
 import {useDispatch} from 'react-redux'
-import {deletePost,likePost} from '../../../actions/posts'
+import {deletePost,likePost,getPosts} from '../../../actions/posts'
 // Defining the Post component
 const Post = ({ post, setCurrentId }) => {
   // Destructuring the post and setCurrentId from props
@@ -57,7 +57,7 @@ const Post = ({ post, setCurrentId }) => {
           {post.likeCount}
           {/* A button to like the post and display the number of likes */}
         </Button>
-        <Button size='small' color='primary' onClick={() => {dispatch(deletePost(post._id)) }}>
+        <Button size='small' color='primary' onClick={() => {dispatch(deletePost(post._id),getPosts())}}>
           <DeleteIcon fontSize='small' />
           Delete
           {/* A button to delete the post */}
