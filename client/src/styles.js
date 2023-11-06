@@ -1,6 +1,11 @@
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme)=>({
+  [theme.breakpoints.down('sm')]: {
+    mainContainer: {
+      flexDirection: 'column-reverse',
+    },
+  },
     appBar: {
         borderRadius: 15,
         margin: '30px 0',
