@@ -7,13 +7,13 @@ import cors from 'cors';
 
 const app = express();
 dotenv.config()
-
+// Enable CORS to allow requests from different origins
+app.use(cors());
 // Middleware for parsing incoming JSON data and URL-encoded data
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-// Enable CORS to allow requests from different origins
-app.use(cors());
+
 
 // Import routes for handling posts
 import postRoutes from './routes/posts.js';

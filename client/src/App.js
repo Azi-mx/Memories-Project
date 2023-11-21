@@ -1,12 +1,11 @@
   // Import necessary modules from React and Material-UI libraries
   import React from 'react';
   import { Container } from '@mui/material';
-
   import { BrowserRouter, Routes, Route } from 'react-router-dom'
   import Navbar from './components/Navbar/Navbar';
   import Home from './components/Home/Home';
   import Auth from './components/Auth/Auth';
-
+  
   // Define the main App component
     const App = () => (
       <BrowserRouter>

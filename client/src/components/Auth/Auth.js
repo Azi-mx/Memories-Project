@@ -12,9 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { GoogleLogin } from 'react-google-login'
-import Icon from './icon';
+// import { Visibility, VisibilityOff } from '@mui/icons-material'
+// import { GoogleLogin } from 'react-google-login'
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from 'react-redux';
+// import Icon from './icon';
 const defaultTheme = createTheme();
 function Auth() {
   const [isSignup, setisSignup] = useState(false)
@@ -32,13 +35,7 @@ function Auth() {
       password: data.get('password'),
     });
   }
-
-  const googleSuccess = () => {
-    console.log("Signup successful");
-  }
-  const googleError = () => {
-    console.log("Google login failed");
-  }
+  const dispatch = useDispatch()
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -121,17 +118,27 @@ function Auth() {
             >
               {isSignup ? 'Sign Up' : 'Sign In'}
             </Button>
-            <GoogleLogin
-              clientId="677409044326-o84av69nf51bkkhtb9tqfcljieqfdpm1.apps.googleusercontent.com"
-              render={(renderProps) => (
-                <Button color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                  Google Sign In
-                </Button>
-              )}
-              onSuccess={googleSuccess}
-              onFailure={googleError}
-              cookiePolicy="single_host_origin"
-            />
+            <Grid container justifyContent="center">
+            <GoogleOAuthProvider  clientId="677409044326-o84av69nf51bkkhtb9tqfcljieqfdpm1.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={credentialResponse => {
+                  const decoded = jwtDecode(credentialResponse.credential);
+                  // console.log(decoded);
+                  const token = decoded.jti;
+                  console.log(token);
+                  try {
+                    dispatch({type:'AUTH' ,data:{decoded,token}})
+                  } catch (error) {
+                    
+                  }
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
+            </GoogleOAuthProvider>
+            </Grid>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2" onClick={switchMode}>
